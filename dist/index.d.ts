@@ -1,2 +1,2 @@
-export declare function greet(name: string): string;
+export {};
 //# sourceMappingURL=index.d.ts.map

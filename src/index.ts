@@ -1,4 +1,5 @@
 import express from "express";
+import postRouter from "./routes/expenseRouter";
 const app = express();
 const PORT = 3000;
 // Middleware
@@ -11,7 +12,7 @@ app.get("/", (req, res) => {
 app.get("/health", (req, res) => {
     res.json({ status: "OK", timestamp: new Date().toISOString() });
 });
-// Start server
+// Start localhost server on port 3000
 app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
     console.log(`📝 Try: http://localhost:${PORT}/health`);
