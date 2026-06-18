@@ -1,12 +1,13 @@
 import express from "express";
-import postRouter from "./routes/expenseRouter";
+import expenseRouter from "./routes/expenseRouter";
 const app = express();
 const PORT = 3000;
 // Middleware
 app.use(express.json());
+app.use("/api", expenseRouter);
 // Root endpoint
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to your API!" });
+    res.json({ message: "Welcome to your APIe!" });
 });
 // Health check
 app.get("/health", (req, res) => {
