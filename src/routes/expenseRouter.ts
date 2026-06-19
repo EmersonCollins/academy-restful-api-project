@@ -1,15 +1,17 @@
 import express from "express";
 import {ExpenseController} from "../controllers/expenseController";
+import {validateBody, validateParam} from "../middleware/validate";
+import {CreateExpenseSchema, IdParamSchema} from "../dtos/expenseDto";
 const router = express.Router();
 const controller = new ExpenseController();
 export default router;
 //Get all expenses
-router.get("/",     (req, res) => controller.getAll(req, res));
+router.get("/expenses",(req, res) => controller.getAll(req, res));
 //Get expense by id
-router.get("/:id",  (req, res) => controller.getById(req, res));
+router.get("/expenses1",validateParam(IdParamSchema), controller.getById.bind(controller));
 //Create a new static expense
-router.post("/",    (req, res) => controller.create(req, res));
+router.post("/expenses",validateBody(CreateExpenseSchema), controller.create.bind(controller));
 //Update an existing expense
-router.put("/:id",  (req, res) => controller.update(req, res));
+router.put("/expenses",validateParam(IdParamSchema), validateBody(CreateExpenseSchema), controller.update.bind(controller));
 //Delete an existing expense
-router.delete("/:id", (req, res) => controller.delete(req, res));
+router.delete("/expenses1", validateParam(IdParamSchema), controller.delete.bind(controller));
