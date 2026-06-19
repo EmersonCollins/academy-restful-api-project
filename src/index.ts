@@ -1,13 +1,7 @@
-import express from "express";
-import expenseRouter from "./routes/expenseRouter";
-const app = express();
-const PORT = 3000;
-// Middleware
-app.use(express.json());
-app.use("/api", expenseRouter);
+import {app} from "./app";
+
 // Start localhost server on port 3000
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-    console.log(`📝 Try: http://localhost:${PORT}/health`);
+app.listen(3000, () => {
+    console.log(`🚀 Server running on http://localhost:${3000}`);
 });
- 
+

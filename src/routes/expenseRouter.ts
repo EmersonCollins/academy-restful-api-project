@@ -1,6 +1,6 @@
 import express from "express";
-import {ExpenseController} from "../controllers/expenseController";
 import {validateBody, validateParam} from "../middleware/validate";
+import {ExpenseController} from "../controllers/expenseController";
 import {CreateExpenseSchema, IdParamSchema} from "../dtos/expenseDto";
 const router = express.Router();
 const controller = new ExpenseController();

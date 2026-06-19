@@ -1,5 +1,5 @@
 import {Expense} from "../models/expense";
-import {CreateExpenseResponseDto} from "../dtos/expenseDto";
+import {CreateExpenseRequestDto} from "../dtos/expenseDto";
 const mockExpenses: Expense[] = [
     { id: 1, date: "dat1", description: "desc1",user: "user2"},
     { id: 2, date: "dat2", description: "desc2",user: "user2"}
@@ -8,15 +8,15 @@ export class ExpenseService {
     async findAll(): Promise<Expense[]> {
         return mockExpenses;
     }
-    async findById(id: number): Promise<Expense|undefined> {
+    async findById(id: number): Promise<Expense> {
         return mockExpenses[id];
     }
-    async create(data: CreateExpenseResponseDto): Promise<Expense> {
-
+    async create(data: CreateExpenseRequestDto): Promise<Expense> {
+        
         mockExpenses.push(new Expense(mockExpenses.length-1,data.description,data.user,data.date));
         return mockExpenses[mockExpenses.length-1];
     }
-    async update(data: CreateExpenseResponseDto,id: number): Promise<Expense|undefined> {
+    async update(data: CreateExpenseRequestDto,id: number): Promise<Expense> {
         mockExpenses[id] = new Expense(id, data.description, data.user, data.date);
         return mockExpenses[id];
     }
