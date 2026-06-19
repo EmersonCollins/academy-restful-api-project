@@ -1,28 +1,28 @@
-
-const mockExpenses: any[] = [
-    { id: 1, expense: 5},
-    { id: 2, expense: 23},
+import {Expense} from "../models/expense";
+import {CreateExpenseResponseDto} from "../dtos/expenseDto";
+const mockExpenses: Expense[] = [
+    { id: 1, date: "dat1", description: "desc1",user: "user2"},
+    { id: 2, date: "dat2", description: "desc2",user: "user2"}
 ];
 export class ExpenseService {
-    async findAll(): Promise<any[]> {
+    async findAll(): Promise<Expense[]> {
         return mockExpenses;
     }
-    async findById(id: number): Promise<any> {
-        return mockExpenses.find(p => p.id = id);
+    async findById(id: number): Promise<Expense|undefined> {
+        return mockExpenses[id];
     }
-    async create(expense: any): Promise<any> {
-        return mockExpenses.push(mockExpenses.length-1, expense);
+    async create(data: CreateExpenseResponseDto): Promise<Expense> {
+
+        mockExpenses.push(new Expense(mockExpenses.length-1,data.description,data.user,data.date));
+        return mockExpenses[mockExpenses.length-1];
     }
-    async update(id: any): Promise<any> {
+    async update(data: CreateExpenseResponseDto,id: number): Promise<Expense|undefined> {
+        mockExpenses[id] = new Expense(id, data.description, data.user, data.date);
+        return mockExpenses[id];
+    }
+    async delete(id: number): Promise<boolean> {
         if(mockExpenses.find(p => p.id === id)) {
             delete mockExpenses[id];
-            return true;
-        }
-        return
-    }
-    async delete(expense: any,id: number): Promise<any> {
-        if(mockExpenses.find(p => p.id === id)) {
-            mockExpenses[id] = expense;
             return true;
         }
         return false;

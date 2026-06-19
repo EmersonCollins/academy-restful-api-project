@@ -3,12 +3,8 @@ import {ExpenseController} from "../controllers/expenseController";
 const router = express.Router();
 const controller = new ExpenseController();
 export default router;
-
-
-//GET METHODS
 //Get all expenses
 router.get("/",     (req, res) => controller.getAll(req, res));
-
 //Get expense by id
 router.get("/:id",  (req, res) => controller.getById(req, res));
 //Create a new static expense
